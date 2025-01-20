@@ -2,53 +2,52 @@
 title: Setup
 ---
 
-FIXME: Setup instructions live in this document. Please specify the tools and
-the data sets the Learner needs to have installed.
+::::::::::::::::::::::::::::::prereq
 
-## Data Sets
+In this lesson we use Git from the Unix Shell. Some previous experience with the shell is expected, but isn’t mandatory.
 
-<!--
-FIXME: place any data you want learners to use in `episodes/data` and then use
-       a relative link ( [data zip file](data/lesson-data.zip) ) to provide a
-       link to it, replacing the example.com link.
--->
-Download the [data zip file](https://example.com/FIXME) and unzip it to your Desktop
+::::::::::::::::::::::::::::::
+
+## Computer
+
+Participants must work on a computer with a Mac, Linux, or Windows operating system (not a tablet, Chromebook, etc.) on which they have administrative privileges.
 
 ## Software Setup
 
-::::::::::::::::::::::::::::::::::::::: discussion
+To participate in this workshop, you will need to prepare the following (if you haven't already):
 
-### Details
+1. Install Shell and Git. Please refer to [this page](https://coderefinery.github.io/installation/git-in-terminal/#installation) for installation instructions.
+2. Create a GitHub account. Please refer to [this page](https://coderefinery.github.io/installation/github/) for instructions.
+3. Set up an SSH connection to GitHub. Please refer to [this page](https://coderefinery.github.io/installation/ssh/) for instructions.
 
-Setup for different systems can be presented in dropdown menus via a `spoiler`
-tag. They will join to this discussion block, so you can give a general overview
-of the software used in this lesson here and fill out the individual operating
-systems (and potentially add more, e.g. online setup) in the solutions blocks.
+### To confirm that everything works
 
-:::::::::::::::::::::::::::::::::::::::::::::::::::
+You should now be able to open a terminal window and execute the following commands:
 
-:::::::::::::::: spoiler
+#### Git
 
-### Windows
+```bash
+$ git --version
+```
+returning (something similar to):
 
-Use PuTTY
+```bash
+git version 2.34.1
+```
 
-::::::::::::::::::::::::
+#### Github account & SSH connection
 
-:::::::::::::::: spoiler
+```bash
+ssh git@github.com
+```
 
-### MacOS
+which will return:
 
-Use Terminal.app
+```bash
+Hi [username]! You've successfully authenticated, but GitHub does not provide shell access.
+Connection to github.com closed.
+```
 
-::::::::::::::::::::::::
+### If something does not work
 
-
-:::::::::::::::: spoiler
-
-### Linux
-
-Use Terminal
-
-::::::::::::::::::::::::
-
+Follow the corresponding setup instructions. If you still need help, send us an email at training@esciencecenter.nl.
