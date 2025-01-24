@@ -16,7 +16,7 @@ Participants must work on a computer with a Mac, Linux, or Windows operating sys
 
 To participate in this workshop, you will need to prepare the following (if you haven't already):
 
-#### Install Shell and Git. 
+#### Install Shell and Git
    
 :::tab
 
@@ -47,10 +47,19 @@ git version 2.47.0.windows.1
 ```
 
 ### Mac  
-Mac
+Most versions of MacOS will have git preinstalled, you can check by running:
+
+```bash
+$ git --version
+```
+If it is not available, you can install git through homebrew by running:
+
+```bash
+brew install git
+``` 
 
 ### Linux
-If Git is not already available on your machine you can install it via your distro's package manager. Debian/Ubuntu run 'sudo apt-get install git' and for Fedora run 'sudo dnf install git'.
+If Git is not already available on your machine you can install this package via your distro's package manager. Debian/Ubuntu run `sudo apt-get install git` and for Fedora run `sudo dnf install git`.
 
 :::
   
@@ -125,6 +134,14 @@ To set up 2FA for your GitHub account, follow these steps:
 
 :::
 
+:::callout
+
+#### About passphrases for SSH keys
+
+With SSH keys, if someone gains access to your computer, the attacker can gain access to every system that uses that key. To add an extra layer of security, you can add a passphrase to your SSH key, however it will require to enter passphrase **every time**. It is possible to avoid entering the passphrase every time you connect by means of securely saving your passphrase in the SSH agent. We recommend not dealing with passphrases in the scope of this lesson. 
+
+:::
+
 Refer to the GitHub [documentation](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/about-authentication-to-github) for more details about authentication.
 
 
@@ -143,7 +160,7 @@ which will return (something similar to):
 git version 2.34.1
 ```
 
-#### Github accreturningount & SSH connection
+#### Github access & SSH connection
 
 ```bash
 ssh git@github.com
