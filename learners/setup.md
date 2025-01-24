@@ -158,4 +158,4 @@ Connection to github.com closed.
 
 ### If something does not work
 
-Follow the corresponding setup instructions. If you still need help, send us an [email](training@esciencecenter.nl).
+Follow the corresponding setup instructions. If you still need help, send us an [email](mailto:training@esciencecenter.nl).
