@@ -470,7 +470,7 @@ administrative privileges.</p>
 <hr class="half-width"><p>To participate in this workshop, you will need to prepare the
 following (if you haven’t already):</p>
 <div class="section level4">
-<h4 id="install-shell-and-git-">Install Shell and Git.<a class="anchor" aria-label="anchor" href="#install-shell-and-git-"></a></h4>
+<h4 id="install-shell-and-git">Install Shell and Git<a class="anchor" aria-label="anchor" href="#install-shell-and-git"></a></h4>
 <div class="tabs">
 <nav><div id="nav-tab-1" class="nav nav-tabs" role="tablist">
 <button class="nav-link active" id="nav-tab-1-1" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-1-1" type="button" role="tab" aria-controls="nav-tabpanel-1-1" aria-selected="true">
@@ -568,12 +568,26 @@ something like this:</p>
 </div>
 </div>
 <div id="nav-tabpanel-1-2" class="tab-pane" aria-labelledby="nav-tab-1-2" role="tabpanel">
-<p>Mac</p>
+<p>Most versions of MacOS will have git preinstalled, you can check by
+running:</p>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="ex">$</span> git <span class="at">--version</span></span></code></pre>
+</div>
+<p>If it is not available, you can install git through homebrew by
+running:</p>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="ex">brew</span> install git</span></code></pre>
+</div>
 </div>
 <div id="nav-tabpanel-1-3" class="tab-pane" aria-labelledby="nav-tab-1-3" role="tabpanel">
-<p>If Git is not already available on your machine you can install it
-via your distro’s package manager. Debian/Ubuntu run ‘sudo apt-get
-install git’ and for Fedora run ‘sudo dnf install git’.</p>
+<p>If Git is not already available on your machine you can install this
+package via your distro’s package manager. Debian/Ubuntu run
+<code>sudo apt-get install git</code> and for Fedora run
+<code>sudo dnf install git</code>.</p>
 </div>
 </div>
 </div>
@@ -611,50 +625,50 @@ we shall use both.</p>
 don’t already have one.</li>
 </ol><p>To check your local machine for existing SSH keys, run the following
 command in the terminal:</p>
-<div class="codewrapper sourceCode" id="cb2">
+<div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>    <span class="fu">ls</span> <span class="at">-al</span> ~/.ssh</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>    <span class="fu">ls</span> <span class="at">-al</span> ~/.ssh</span></code></pre>
 </div>
 <p>Then check the directory listing to see if you already have a public
 SSH key. By default, the filenames of supported public keys for GitHub
 are one of the following.</p>
-<div class="codewrapper sourceCode" id="cb3">
+<div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>    <span class="ex">id_rsa.pub</span></span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>    <span class="ex">id_ecdsa.pub</span></span>
-<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>    <span class="ex">id_ed25519.pub</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>    <span class="ex">id_rsa.pub</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>    <span class="ex">id_ecdsa.pub</span></span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>    <span class="ex">id_ed25519.pub</span></span></code></pre>
 </div>
 <p>If you receive an error that ~/.ssh does not exist, you do not have
 an existing SSH key pair in the default location. You can create a new
 SSH key pair in the next step. If you do have an existing SSH key pair,
 you can skip the next step.</p>
 <ol start="2" style="list-style-type: decimal"><li>Generate a new SSH key.</li>
-</ol><div class="codewrapper sourceCode" id="cb4">
+</ol><div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">ssh-keygen</span> <span class="at">-t</span> ed25519 <span class="at">-C</span> <span class="st">"your_email@example.com"</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="fu">ssh-keygen</span> <span class="at">-t</span> ed25519 <span class="at">-C</span> <span class="st">"your_email@example.com"</span></span></code></pre>
 </div>
 <p>When you’re prompted to “Enter a file in which to save the key”, you
 can press Enter to accept the default file location.</p>
 <ol start="3" style="list-style-type: decimal"><li>Add your SSH key to the ssh-agent.</li>
-</ol><div class="codewrapper sourceCode" id="cb5">
+</ol><div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="co"># Start the ssh-agent in the background</span></span>
-<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="bu">eval</span> <span class="st">"</span><span class="va">$(</span><span class="fu">ssh-agent</span> <span class="at">-s</span><span class="va">)</span><span class="st">"</span></span>
-<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="co"># Add your SSH private key to the ssh-agent</span></span>
-<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="fu">ssh-add</span> ~/.ssh/id_ed25519</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="co"># Start the ssh-agent in the background</span></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="bu">eval</span> <span class="st">"</span><span class="va">$(</span><span class="fu">ssh-agent</span> <span class="at">-s</span><span class="va">)</span><span class="st">"</span></span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="co"># Add your SSH private key to the ssh-agent</span></span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="fu">ssh-add</span> ~/.ssh/id_ed25519</span></code></pre>
 </div>
 <ol start="4" style="list-style-type: decimal"><li>Add SSH Key to GitHub Account</li>
 </ol><p>Finally, you need to add your SSH key to your GitHub account. To do
 this, you need to copy the SSH key to your clipboard. You can do this by
 running the following command:</p>
-<div class="codewrapper sourceCode" id="cb6">
+<div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="fu">cat</span> ~/.ssh/id_ed25519.pub</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="fu">cat</span> ~/.ssh/id_ed25519.pub</span></code></pre>
 </div>
 <p>Then, copy the output to your clipboard. Next, navigate to your
 GitHub account settings, and click on SSH and GPG keys. Click on the New
@@ -674,6 +688,23 @@ similar to security keys. However, passkeys satisfy both password and
 </ol></div>
 </div>
 </div>
+<div id="about-passphrases-for-ssh-keys" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<div id="about-passphrases-for-ssh-keys" class="callout-inner">
+<h3 class="callout-title">About passphrases for SSH keys</h3>
+<div class="callout-content">
+<p>With SSH keys, if someone gains access to your computer, the attacker
+can gain access to every system that uses that key. To add an extra
+layer of security, you can add a passphrase to your SSH key, however it
+will require to enter passphrase <strong>every time</strong>. It is
+possible to avoid entering the passphrase every time you connect by
+means of securely saving your passphrase in the SSH agent. We recommend
+not dealing with passphrases in the scope of this lesson.</p>
+</div>
+</div>
+</div>
 <p>Refer to the GitHub <a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/about-authentication-to-github" class="external-link">documentation</a>
 for more details about authentication.</p>
 </div>
@@ -684,24 +715,24 @@ following commands:</p>
 </div>
 <div class="section level4">
 <h4 id="git">Git<a class="anchor" aria-label="anchor" href="#git"></a></h4>
-<div class="codewrapper sourceCode" id="cb7">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="ex">$</span> git <span class="at">--version</span></span></code></pre>
-</div>
-<p>which will return (something similar to):</p>
-<div class="codewrapper sourceCode" id="cb8">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="fu">git</span> version 2.34.1</span></code></pre>
-</div>
-</div>
-<div class="section level4">
-<h4 id="github-accreturningount-ssh-connection">Github accreturningount &amp; SSH connection<a class="anchor" aria-label="anchor" href="#github-accreturningount-ssh-connection"></a></h4>
 <div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="fu">ssh</span> git@github.com</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="ex">$</span> git <span class="at">--version</span></span></code></pre>
+</div>
+<p>which will return (something similar to):</p>
+<div class="codewrapper sourceCode" id="cb10">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="fu">git</span> version 2.34.1</span></code></pre>
+</div>
+</div>
+<div class="section level4">
+<h4 id="github-access-ssh-connection">Github access &amp; SSH connection<a class="anchor" aria-label="anchor" href="#github-access-ssh-connection"></a></h4>
+<div class="codewrapper sourceCode" id="cb11">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="fu">ssh</span> git@github.com</span></code></pre>
 </div>
 <p>which will return:</p>
 <pre class="bashreturning"><code>Hi [username]! You've successfully authenticated, but GitHub does not provide shell access.
