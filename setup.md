@@ -23,8 +23,8 @@ To participate in this workshop, you will need to prepare the following (if you 
 ### Windows
 For Windows, we only have to install Git, as we will use the Shell that comes with it.
 
-1. Download the Git for Windows [installer](https://gitforwindows.org/).
-2. Run the installer and follow the steps below:
+Download the Git for Windows [installer](https://gitforwindows.org/). Then run the installer and follow the steps below:
+
    1. Click on "Next" four times (two times if you've previously installed Git). You don't need to change anything in the Information, location, components, and start menu screens.
    2. From the dropdown menu, "Choosing the default editor used by Git", select "Use the Nano editor by default" (NOTE: you will need to scroll up to find it) and click on "Next".
    3. On the page that says "Adjusting the name of the initial branch in new repositories", select "Override the default branch name for new repositories", ensure that the textbox says "main" and click on "Next".
@@ -37,7 +37,7 @@ For Windows, we only have to install Git, as we will use the Shell that comes wi
    10. Ensure that "Git Credential Manager" is selected and click on "Next".
    11. Ensure that "Enable file system caching" is selected and click on "Next".
    12. Click on "Install".
-   13. Click on "Finish" or "Next". 
+   13. Click on "Finish" or "Next".
 
 To test if this has worked, you should be able to open the "Git Bash" program from your start menu. In the window that opens, type `git --version` and press Enter. The output should show something like this:
 
