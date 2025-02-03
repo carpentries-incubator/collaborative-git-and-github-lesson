@@ -66,9 +66,10 @@ episodes:
 - 04-changes.md
 - 05-history.md
 - 06-ignore.md
-- 07-github.md  
-- 08-collab-centralized.md
-- 09-collab-distributed.md
+- 07-github.md
+- 08-branches.md
+- 09-collab-centralized.md
+- 10-collab-distributed.md
 
 # Information for Learners
 learners:
