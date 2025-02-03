@@ -90,8 +90,8 @@ $ git config --global core.autocrlf true
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-Set your text editor to `nano`. `nano` is a simple command-line editor.
-It is simple to use, and we recommend to use it during this lesson.
+Set your text editor to `nano`. `nano` is a simple to use command-line editor,
+and we recommend to use it during this lesson.
 
 Execute the following command:
 ```bash
@@ -100,7 +100,9 @@ $ git config --global core.editor "nano"
 
 ::: callout
 ## Configuring a different editor
+
 You can configure a different editor than `nano` if you wish. Here are a few examples:
+
 | Editor                                | Configuration command | 
 | :-----------                          | :------------------------------ |
 | Atom                                  | `$ git config --global core.editor "atom --wait"`                      | 
