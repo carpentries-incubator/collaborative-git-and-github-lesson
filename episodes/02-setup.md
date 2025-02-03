@@ -90,12 +90,20 @@ $ git config --global core.autocrlf true
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-Dracula also has to set his favorite text editor, following this table:
+Set your text editor to `nano`. `nano` is a simple command-line editor.
+It is simple to use, and we recommend to use it during this lesson.
 
+Execute the following command:
+```bash
+$ git config --global core.editor "nano"
+```
+
+::: callout
+## Configuring a different editor
+You can configure a different editor than `nano` if you wish. Here are a few examples:
 | Editor                                | Configuration command | 
 | :-----------                          | :------------------------------ |
 | Atom                                  | `$ git config --global core.editor "atom --wait"`                      | 
-| nano                                  | `$ git config --global core.editor "nano -w"`                      | 
 | BBEdit (Mac, with command line tools) | `$ git config --global core.editor "bbedit -w"`                      | 
 | Sublime Text (Mac)                    | `$ git config --global core.editor "/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl -n -w"`                      | 
 | Sublime Text (Win, 32-bit install)    | `$ git config --global core.editor "'c:/program files (x86)/sublime text 3/sublime_text.exe' -w"`                      | 
@@ -112,6 +120,8 @@ Dracula also has to set his favorite text editor, following this table:
 
 It is possible to reconfigure the text editor for Git whenever you want to change it.
 
+:::
+
 :::::::::::::::::::::::::::::::::::::::::  callout
 
 ## Exiting Vim
@@ -123,34 +133,20 @@ If you want to save your changes and quit, press <kbd>Esc</kbd> then type `:wq` 
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-Git (2.28+) allows configuration of the name of the branch created when you
-initialize any new repository.  Dracula decides to use that feature to set it to `main` so
-it matches the cloud service he will eventually use.
-
-```bash
-$ git config --global init.defaultBranch main
-```
-
 :::::::::::::::::::::::::::::::::::::::::  callout
 
 ## Default Git branch naming
 
 Source file changes are associated with a "branch."
 For new learners in this lesson, it's enough to know that branches exist, and this lesson uses one branch.  
-By default, Git will create a branch called `master`
+Previously, by default, Git would create a branch called `master` instead of `main`,
 when you create a new repository with `git init` (as explained in the next Episode). This term evokes
 the racist practice of human slavery and the
 [software development community](https://github.com/github/renaming)  has moved to adopt
 more inclusive language.
 
 In 2020, most Git code hosting services transitioned to using `main` as the default
-branch. As an example, any new repository that is opened in GitHub and GitLab default
-to `main`.  However, Git has not yet made the same change.  As a result, local repositories
-must be manually configured have the same main branch name as most cloud services.
-
-For versions of Git prior to 2.28, the change can be made on an individual repository level.  The
-command for this is in the next episode.  Note that if this value is unset in your local Git
-configuration, the `init.defaultBranch` value defaults to `master`.
+branch.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
