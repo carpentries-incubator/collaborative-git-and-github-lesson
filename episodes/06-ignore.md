@@ -18,7 +18,11 @@ exercises: 0
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::::::::::::: instructor
-There are no slides associated with this episode. Focus on the main concept of ignoring files with a .gitignore file, instead of fully learning the syntax. 
+There are no slides associated with this episode. 
+We suggest doing a demo here instead of live coding.
+Focus on getting the concept of ignoring files with a .gitignore file across, instead of getting learners to fully be able to use the syntax.
+
+We suggest ignoring (haha) the exercises, since the main idea of a `.gitignore` file comes across without exercises.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -140,6 +144,19 @@ Ignored files:
 
 nothing to commit, working tree clean
 ```
+
+::: callout
+## .gitignore examples
+
+For many programming languages or specific usecases you can find good `.gitignore` examples online.
+
+Here are a few for commonly used languages:
+
+- [Python .gitignore](https://github.com/github/gitignore/blob/main/Python.gitignore)
+- [R .gitignore](https://github.com/github/gitignore/blob/main/R.gitignore)
+- [Julia .gitignore](https://github.com/github/gitignore/blob/main/Julia.gitignore)
+
+:::
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
