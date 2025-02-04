@@ -346,7 +346,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Setting Up Git</h1>
-        <p>Last updated on 2024-06-26 |
+        <p>Last updated on 2025-02-04 |
 
         <a href="https://github.com/esciencecenter-digital-skills/git-lesson/edit/main/episodes/02-setup.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -389,7 +389,7 @@ flag.</li>
 <button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor1" aria-expanded="false" aria-controls="collapseInstructor1">
   <h3 class="accordion-header" id="headingInstructor1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> Instructor Note </h3>
 </button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
+<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
 <div class="accordion-body">
 <p>There are no slides for this episode. Explain what a command line is,
 why it is useful, and why we use it in this workshop. Participants are
@@ -474,42 +474,59 @@ following settings are recommended:</p>
 </div>
 </div>
 </div>
-<p>Dracula also has to set his favorite text editor, following this
-table:</p>
+<p>Set your text editor to <code>nano</code>. <code>nano</code> is a
+simple to use command-line editor, and we recommend to use it during
+this lesson.</p>
+<p>Execute the following command:</p>
+<div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="ex">$</span> git config <span class="at">--global</span> core.editor <span class="st">"nano"</span></span></code></pre>
+</div>
+<div id="configuring-a-different-editor" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<div id="configuring-a-different-editor" class="callout-inner">
+<h3 class="callout-title">Configuring a different editor</h3>
+<div class="callout-content">
+<p>You can configure a different editor than <code>nano</code> if you
+wish. Here are a few examples:</p>
 <table class="table"><colgroup><col width="27%"><col width="72%"></colgroup><thead><tr class="header"><th align="left">Editor</th>
 <th align="left">Configuration command</th>
 </tr></thead><tbody><tr class="odd"><td align="left">Atom</td>
 <td align="left"><code>$ git config --global core.editor "atom --wait"</code></td>
-</tr><tr class="even"><td align="left">nano</td>
-<td align="left"><code>$ git config --global core.editor "nano -w"</code></td>
-</tr><tr class="odd"><td align="left">BBEdit (Mac, with command line tools)</td>
+</tr><tr class="even"><td align="left">BBEdit (Mac, with command line tools)</td>
 <td align="left"><code>$ git config --global core.editor "bbedit -w"</code></td>
-</tr><tr class="even"><td align="left">Sublime Text (Mac)</td>
+</tr><tr class="odd"><td align="left">Sublime Text (Mac)</td>
 <td align="left"><code>$ git config --global core.editor "/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl -n -w"</code></td>
-</tr><tr class="odd"><td align="left">Sublime Text (Win, 32-bit install)</td>
+</tr><tr class="even"><td align="left">Sublime Text (Win, 32-bit install)</td>
 <td align="left"><code>$ git config --global core.editor "'c:/program files (x86)/sublime text 3/sublime_text.exe' -w"</code></td>
-</tr><tr class="even"><td align="left">Sublime Text (Win, 64-bit install)</td>
+</tr><tr class="odd"><td align="left">Sublime Text (Win, 64-bit install)</td>
 <td align="left"><code>$ git config --global core.editor "'c:/program files/sublime text 3/sublime_text.exe' -w"</code></td>
-</tr><tr class="odd"><td align="left">Notepad (Win)</td>
+</tr><tr class="even"><td align="left">Notepad (Win)</td>
 <td align="left"><code>$ git config --global core.editor "c:/Windows/System32/notepad.exe"</code></td>
-</tr><tr class="even"><td align="left">Notepad++ (Win, 32-bit install)</td>
+</tr><tr class="odd"><td align="left">Notepad++ (Win, 32-bit install)</td>
 <td align="left"><code>$ git config --global core.editor "'c:/program files (x86)/Notepad++/notepad++.exe' -multiInst -notabbar -nosession -noPlugin"</code></td>
-</tr><tr class="odd"><td align="left">Notepad++ (Win, 64-bit install)</td>
+</tr><tr class="even"><td align="left">Notepad++ (Win, 64-bit install)</td>
 <td align="left"><code>$ git config --global core.editor "'c:/program files/Notepad++/notepad++.exe' -multiInst -notabbar -nosession -noPlugin"</code></td>
-</tr><tr class="even"><td align="left">Kate (Linux)</td>
+</tr><tr class="odd"><td align="left">Kate (Linux)</td>
 <td align="left"><code>$ git config --global core.editor "kate"</code></td>
-</tr><tr class="odd"><td align="left">Gedit (Linux)</td>
+</tr><tr class="even"><td align="left">Gedit (Linux)</td>
 <td align="left"><code>$ git config --global core.editor "gedit --wait --new-window"</code></td>
-</tr><tr class="even"><td align="left">Scratch (Linux)</td>
+</tr><tr class="odd"><td align="left">Scratch (Linux)</td>
 <td align="left"><code>$ git config --global core.editor "scratch-text-editor"</code></td>
-</tr><tr class="odd"><td align="left">Emacs</td>
+</tr><tr class="even"><td align="left">Emacs</td>
 <td align="left"><code>$ git config --global core.editor "emacs"</code></td>
-</tr><tr class="even"><td align="left">Vim</td>
+</tr><tr class="odd"><td align="left">Vim</td>
 <td align="left"><code>$ git config --global core.editor "vim"</code></td>
-</tr><tr class="odd"><td align="left">VS Code</td>
+</tr><tr class="even"><td align="left">VS Code</td>
 <td align="left"><code>$ git config --global core.editor "code --wait"</code></td>
 </tr></tbody></table><p>It is possible to reconfigure the text editor for Git whenever you
 want to change it.</p>
+</div>
+</div>
+</div>
 <div id="exiting-vim" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
@@ -526,15 +543,6 @@ hit <kbd>Enter</kbd> or <kbd>↵</kbd> or on Macs, <kbd>Return</kbd>.</p>
 </div>
 </div>
 </div>
-<p>Git (2.28+) allows configuration of the name of the branch created
-when you initialize any new repository. Dracula decides to use that
-feature to set it to <code>main</code> so it matches the cloud service
-he will eventually use.</p>
-<div class="codewrapper sourceCode" id="cb4">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="ex">$</span> git config <span class="at">--global</span> init.defaultBranch main</span></code></pre>
-</div>
 <div id="default-git-branch-naming" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
@@ -545,22 +553,14 @@ he will eventually use.</p>
 <p>Source file changes are associated with a “branch.” For new learners
 in this lesson, it’s enough to know that branches exist, and this lesson
 uses one branch.<br>
-By default, Git will create a branch called <code>master</code> when you
-create a new repository with <code>git init</code> (as explained in the
-next Episode). This term evokes the racist practice of human slavery and
-the <a href="https://github.com/github/renaming" class="external-link">software development
+Previously, by default, Git would create a branch called
+<code>master</code> instead of <code>main</code>, when you create a new
+repository with <code>git init</code> (as explained in the next
+Episode). This term evokes the racist practice of human slavery and the
+<a href="https://github.com/github/renaming" class="external-link">software development
 community</a> has moved to adopt more inclusive language.</p>
 <p>In 2020, most Git code hosting services transitioned to using
-<code>main</code> as the default branch. As an example, any new
-repository that is opened in GitHub and GitLab default to
-<code>main</code>. However, Git has not yet made the same change. As a
-result, local repositories must be manually configured have the same
-main branch name as most cloud services.</p>
-<p>For versions of Git prior to 2.28, the change can be made on an
-individual repository level. The command for this is in the next
-episode. Note that if this value is unset in your local Git
-configuration, the <code>init.defaultBranch</code> value defaults to
-<code>master</code>.</p>
+<code>main</code> as the default branch.</p>
 </div>
 </div>
 </div>
@@ -717,8 +717,8 @@ any links that you are not going to use.
   "creativeWorkStatus": "active",
   "url": "https://esciencecenter-digital-skills.github.io/git-lesson/instructor/02-setup.html",
   "identifier": "https://esciencecenter-digital-skills.github.io/git-lesson/instructor/02-setup.html",
-  "dateCreated": "2025-01-26",
-  "dateModified": "2024-06-26",
+  "dateCreated": "2025-02-04",
+  "dateModified": "2025-02-04",
   "datePublished": "2025-02-04"
 }
 

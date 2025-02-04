@@ -272,8 +272,7 @@
       <div class="accordion-body">
         <ul><li><a href="#create-a-remote-repository">1. Create a remote repository</a></li>
 <li><a href="#connect-local-to-remote-repository">2. Connect local to remote repository</a></li>
-<li><a href="#ssh-background-and-setup">3. SSH Background and Setup</a></li>
-<li><a href="#push-local-changes-to-a-remote">4. Push local changes to a remote</a></li>
+<li><a href="#push-local-changes-to-a-remote">3. Push local changes to a remote</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
 
@@ -356,7 +355,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Remotes in GitHub</h1>
-        <p>Last updated on 2024-08-05 |
+        <p>Last updated on 2025-02-04 |
 
         <a href="https://github.com/esciencecenter-digital-skills/git-lesson/edit/main/episodes/07-github.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -397,12 +396,13 @@
 <button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor1" aria-expanded="false" aria-controls="collapseInstructor1">
   <h3 class="accordion-header" id="headingInstructor1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> Instructor Note </h3>
 </button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
+<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
 <div class="accordion-body">
 <p>There are no slides associated with this episode. Take a dedicated
 moment right before this episode to check succesful completion of
 particpants’ SSH setup and help out people who did not succeed yet. You
-will need 15-30 minutes for this.</p>
+will need 15-30 minutes for this, so prepare an optional exercise for
+people that are correctly setup.</p>
 </div>
 </div>
 </div>
@@ -495,219 +495,14 @@ origin   git@github.com:vlad/planets.git (push)</code></pre>
 </div>
 <p>We’ll discuss remotes in more detail in the next episode, while
 talking about how they might be used for collaboration.</p>
-</section><section><h2 class="section-heading" id="ssh-background-and-setup">3. SSH Background and Setup<a class="anchor" aria-label="anchor" href="#ssh-background-and-setup"></a></h2>
-<hr class="half-width"><p>Before Dracula can connect to a remote repository, he needs to set up
-a way for his computer to authenticate with GitHub so it knows it’s him
-trying to connect to his remote repository.</p>
-<p>We are going to set up the method that is commonly used by many
-different services to authenticate access on the command line. This
-method is called Secure Shell Protocol (SSH). SSH is a cryptographic
-network protocol that allows secure communication between computers
-using an otherwise insecure network.</p>
-<p>SSH uses what is called a key pair. This is two keys that work
-together to validate access. One key is publicly known and called the
-public key, and the other key called the private key is kept private.
-Very descriptive names.</p>
-<p>You can think of the public key as a padlock, and only you have the
-key (the private key) to open it. You use the public key where you want
-a secure method of communication, such as your GitHub account. You give
-this padlock, or public key, to GitHub and say “lock the communications
-to my account with this so that only computers that have my private key
-can unlock communications and send git commands as my GitHub
-account.”</p>
-<p>What we will do now is the minimum required to set up the SSH keys
-and add the public key to a GitHub account.</p>
-<div id="advanced-ssh" class="callout">
-<div class="callout-square">
-<i class="callout-icon" data-feather="bell"></i>
-</div>
-<div id="advanced-ssh" class="callout-inner">
-<h3 class="callout-title">Advanced SSH</h3>
-<div class="callout-content">
-<p>A supplemental episode in this lesson discusses SSH and key pairs in
-more depth and detail.</p>
-</div>
-</div>
-</div>
-<p>The first thing we are going to do is check if this has already been
-done on the computer you’re on. Because generally speaking, this setup
-only needs to happen once and then you can forget about it.</p>
-<div id="keeping-your-keys-secure" class="callout">
-<div class="callout-square">
-<i class="callout-icon" data-feather="bell"></i>
-</div>
-<div id="keeping-your-keys-secure" class="callout-inner">
-<h3 class="callout-title">Keeping your keys secure</h3>
-<div class="callout-content">
-<p>You shouldn’t really forget about your SSH keys, since they keep your
-account secure. It’s good practice to audit your secure shell keys every
-so often. Especially if you are using multiple computers to access your
-account.</p>
-</div>
-</div>
-</div>
-<p>We will run the list command to check what key pairs already exist on
-your computer.</p>
-<div class="codewrapper sourceCode" id="cb5">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-al</span> ~/.ssh</span></code></pre>
-</div>
-<p>Your output is going to look a little different depending on whether
-or not SSH has ever been set up on the computer you are using.</p>
-<p>Dracula has not set up SSH on his computer, so his output is</p>
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>ls: cannot access '/c/Users/Vlad Dracula/.ssh': No such file or directory</code></pre>
-</div>
-<p>If SSH has been set up on the computer you’re using, the public and
-private key pairs will be listed. The file names are either
-<code>id_ed25519</code>/<code>id_ed25519.pub</code> or
-<code>id_rsa</code>/<code>id_rsa.pub</code> depending on how the key
-pairs were set up.<br>
-Since they don’t exist on Dracula’s computer, he uses this command to
-create them.</p>
-<div class="section level3">
-<h3 id="create-an-ssh-key-pair">3.1 Create an SSH key pair<a class="anchor" aria-label="anchor" href="#create-an-ssh-key-pair"></a></h3>
-<p>To create an SSH key pair Vlad uses this command, where the
-<code>-t</code> option specifies which type of algorithm to use and
-<code>-C</code> attaches a comment to the key (here, Vlad’s email):</p>
-<div class="codewrapper sourceCode" id="cb7">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="ex">$</span> ssh-keygen <span class="at">-t</span> ed25519 <span class="at">-C</span> <span class="st">"vlad@tran.sylvan.ia"</span></span></code></pre>
-</div>
-<p>If you are using a legacy system that doesn’t support the Ed25519
-algorithm, use:
-<code>$ ssh-keygen -t rsa -b 4096 -C "your_email@example.com"</code></p>
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>Generating public/private ed25519 key pair.
-Enter file in which to save the key (/c/Users/Vlad Dracula/.ssh/id_ed25519):</code></pre>
-</div>
-<p>We want to use the default file, so just press <kbd>Enter</kbd>.</p>
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>Created directory '/c/Users/Vlad Dracula/.ssh'.
-Enter passphrase (empty for no passphrase):</code></pre>
-</div>
-<p>Now, it is prompting Dracula for a passphrase. Since he is using his
-lab’s laptop that other people sometimes have access to, he wants to
-create a passphrase. Be sure to use something memorable or save your
-passphrase somewhere, as there is no “reset my password” option.</p>
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>Enter same passphrase again:</code></pre>
-</div>
-<p>After entering the same passphrase a second time, we receive the
-confirmation</p>
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>Your identification has been saved in /c/Users/Vlad Dracula/.ssh/id_ed25519
-Your public key has been saved in /c/Users/Vlad Dracula/.ssh/id_ed25519.pub
-The key fingerprint is:
-SHA256:SMSPIStNyA00KPxuYu94KpZgRAYjgt9g4BA4kFy3g1o vlad@tran.sylvan.ia
-The key's randomart image is:
-+--[ED25519 256]--+
-|^B== o.          |
-|%*=.*.+          |
-|+=.E =.+         |
-| .=.+.o..        |
-|....  . S        |
-|.+ o             |
-|+ =              |
-|.o.o             |
-|oo+.             |
-+----[SHA256]-----+</code></pre>
-</div>
-<p>The “identification” is actually the private key. You should never
-share it. The public key is appropriately named. The “key fingerprint”
-is a shorter version of a public key.</p>
-<p>Now that we have generated the SSH keys, we will find the SSH files
-when we check.</p>
-<div class="codewrapper sourceCode" id="cb12">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-al</span> ~/.ssh</span></code></pre>
-</div>
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>drwxr-xr-x 1 Vlad Dracula 197121   0 Jul 16 14:48 ./
-drwxr-xr-x 1 Vlad Dracula 197121   0 Jul 16 14:48 ../
--rw-r--r-- 1 Vlad Dracula 197121 419 Jul 16 14:48 id_ed25519
--rw-r--r-- 1 Vlad Dracula 197121 106 Jul 16 14:48 id_ed25519.pub</code></pre>
-</div>
-</div>
-<div class="section level3">
-<h3 id="copy-the-public-key-to-github">3.2 Copy the public key to GitHub<a class="anchor" aria-label="anchor" href="#copy-the-public-key-to-github"></a></h3>
-<p>Now we have a SSH key pair and we can run this command to check if
-GitHub can read our authentication.</p>
-<div class="codewrapper sourceCode" id="cb14">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="fu">ssh</span> <span class="at">-T</span> git@github.com</span></code></pre>
-</div>
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>The authenticity of host 'github.com (192.30.255.112)' can't be established.
-RSA key fingerprint is SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8.
-This key is not known by any other names
-Are you sure you want to continue connecting (yes/no/[fingerprint])? y
-Please type 'yes', 'no' or the fingerprint: yes
-Warning: Permanently added 'github.com' (RSA) to the list of known hosts.
-git@github.com: Permission denied (publickey).</code></pre>
-</div>
-<p>Right, we forgot that we need to give GitHub our public key!</p>
-<p>First, we need to copy the public key. Be sure to include the
-<code>.pub</code> at the end, otherwise you’re looking at the private
-key.</p>
-<div class="codewrapper sourceCode" id="cb16">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="fu">cat</span> ~/.ssh/id_ed25519.pub</span></code></pre>
-</div>
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDmRA3d51X0uu9wXek559gfn6UFNF69yZjChyBIU2qKI vlad@tran.sylvan.ia</code></pre>
-</div>
-<p>Now, going to GitHub.com, click on your profile icon in the top right
-corner to get the drop-down menu. Click “Settings,” then on the settings
-page, click “SSH and GPG keys,” on the left side “Account settings”
-menu. Click the “New SSH key” button on the right side. Now, you can add
-the title (Dracula uses the title “Vlad’s Lab Laptop” so he can remember
-where the original key pair files are located), paste your SSH key into
-the field, and click the “Add SSH key” to complete the setup.</p>
-<p>Now that we’ve set that up, let’s check our authentication again from
-the command line.</p>
-<div class="codewrapper sourceCode" id="cb18">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="ex">$</span> ssh <span class="at">-T</span> git@github.com</span></code></pre>
-</div>
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>Hi Vlad! You've successfully authenticated, but GitHub does not provide shell access.</code></pre>
-</div>
-<p>Good! This output confirms that the SSH key works as intended. We are
-now ready to push our work to the remote repository.</p>
-</div>
-</section><section><h2 class="section-heading" id="push-local-changes-to-a-remote">4. Push local changes to a remote<a class="anchor" aria-label="anchor" href="#push-local-changes-to-a-remote"></a></h2>
+</section><section><h2 class="section-heading" id="push-local-changes-to-a-remote">3. Push local changes to a remote<a class="anchor" aria-label="anchor" href="#push-local-changes-to-a-remote"></a></h2>
 <hr class="half-width"><p>Now that authentication is setup, we can return to the remote. This
 command will push the changes from our local repository to the
 repository on GitHub:</p>
-<div class="codewrapper sourceCode" id="cb20">
+<div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="ex">$</span> git push origin main</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="ex">$</span> git push origin main</span></code></pre>
 </div>
 <p>Since Dracula set up a passphrase, it will prompt him for it. If you
 completed advanced settings for your authentication, it will not prompt
@@ -736,19 +531,19 @@ To https://github.com/vlad/planets.git
 that your last command failed with “Could not resolve hostname” as the
 error message. To solve this issue, you need to tell Git about the
 proxy:</p>
-<div class="codewrapper sourceCode" id="cb22">
+<div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="ex">$</span> git config <span class="at">--global</span> http.proxy http://user:password@proxy.url</span>
-<span id="cb22-2"><a href="#cb22-2" tabindex="-1"></a><span class="ex">$</span> git config <span class="at">--global</span> https.proxy https://user:password@proxy.url</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="ex">$</span> git config <span class="at">--global</span> http.proxy http://user:password@proxy.url</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="ex">$</span> git config <span class="at">--global</span> https.proxy https://user:password@proxy.url</span></code></pre>
 </div>
 <p>When you connect to another network that doesn’t use a proxy, you
 will need to tell Git to disable the proxy using:</p>
-<div class="codewrapper sourceCode" id="cb23">
+<div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="ex">$</span> git config <span class="at">--global</span> <span class="at">--unset</span> http.proxy</span>
-<span id="cb23-2"><a href="#cb23-2" tabindex="-1"></a><span class="ex">$</span> git config <span class="at">--global</span> <span class="at">--unset</span> https.proxy</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="ex">$</span> git config <span class="at">--global</span> <span class="at">--unset</span> http.proxy</span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="ex">$</span> git config <span class="at">--global</span> <span class="at">--unset</span> https.proxy</span></code></pre>
 </div>
 </div>
 </div>
@@ -765,10 +560,10 @@ will need to tell Git to disable the proxy using:</p>
 password. For example, this is the default behavior for Git Bash on
 Windows. If you want to type your username and password at the terminal
 instead of using a password manager, type:</p>
-<div class="codewrapper sourceCode" id="cb24">
+<div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a><span class="ex">$</span> unset SSH_ASKPASS</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="ex">$</span> unset SSH_ASKPASS</span></code></pre>
 </div>
 <p>in the terminal, before you run <code>git push</code>. Despite the
 name, <a href="https://git-scm.com/docs/gitcredentials#_requesting_credentials" class="external-link">Git
@@ -801,10 +596,10 @@ once the remote has been set up.</p>
 </div>
 <p>We can pull changes from the remote repository to the local one as
 well:</p>
-<div class="codewrapper sourceCode" id="cb25">
+<div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a><span class="ex">$</span> git pull origin main</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="ex">$</span> git pull origin main</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -838,7 +633,7 @@ shell?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>The left-most button (with the picture of a clipboard) copies the
 full identifier of the commit to the clipboard. In the shell,
@@ -900,7 +695,7 @@ GitHub record times, and why?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>GitHub displays timestamps in a human readable relative format
 (i.e. “22 hours ago” or “three weeks ago”). However, if you hover over
@@ -927,7 +722,7 @@ push” different from “git commit”?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <p>When we push changes, we’re interacting with a remote repository to
 update it with the changes we’ve made locally (often this corresponds to
@@ -956,17 +751,17 @@ happened when you tried to link your local and remote repositories?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4"> Show me the solution </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
 <p>In this case, we’d see a merge conflict due to unrelated histories.
 When GitHub creates a README.md file, it performs a commit in the remote
 repository. When you try to pull the remote repository to your local
 repository, Git detects that they have histories that do not share a
 common origin and refuses to merge.</p>
-<div class="codewrapper sourceCode" id="cb27">
+<div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a><span class="ex">$</span> git pull origin main</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="ex">$</span> git pull origin main</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -985,10 +780,10 @@ fatal: refusing to merge unrelated histories</code></pre>
 <code>--allow-unrelated-histories</code>. Be careful when you use this
 option and carefully examine the contents of local and remote
 repositories before merging.</p>
-<div class="codewrapper sourceCode" id="cb29">
+<div class="codewrapper sourceCode" id="cb14">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" tabindex="-1"></a><span class="ex">$</span> git pull <span class="at">--allow-unrelated-histories</span> origin main</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="ex">$</span> git pull <span class="at">--allow-unrelated-histories</span> origin main</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1084,8 +879,8 @@ any links that you are not going to use.
   "creativeWorkStatus": "active",
   "url": "https://esciencecenter-digital-skills.github.io/git-lesson/instructor/07-github.html",
   "identifier": "https://esciencecenter-digital-skills.github.io/git-lesson/instructor/07-github.html",
-  "dateCreated": "2025-01-26",
-  "dateModified": "2024-08-05",
+  "dateCreated": "2025-02-04",
+  "dateModified": "2025-02-04",
   "datePublished": "2025-02-04"
 }
 
