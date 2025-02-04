@@ -20,12 +20,8 @@ exercises: 0
 ::::::::::::::::::::::::::::::::::::::::: instructor
 Original lesson material: https://swcarpentry.github.io/git-novice/ 
 Slides: https://esciencecenter-digital-skills.github.io/digital-skills-slides/modules/git-lesson/git-slides, until https://esciencecenter-digital-skills.github.io/digital-skills-slides/modules/git-lesson/git-slides#/4.
-Please note that slides will be deployed in the 'right place' in due time. Right now nobody knows where that is.
 
-The slides provide visual context to the concepts that are used in the live coding. It would be best to have both the live coding screen and the slides screen side by side. As this is in general not possible, it is best to switch back and forth between command line and slides when necessary (you can use the images in the teaching material as indication when to switch to the slides).
-
-Teach what you think is most useful. See how far you get, usually we get to episode 7 (Remotes in GitHub) in one morning. Ignore the temptation to answer advanced questions. (You can of course do this individually during exercises).
-
+The slides can be used to explain the concepts introduced in the text here.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
