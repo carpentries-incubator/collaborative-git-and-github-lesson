@@ -34,20 +34,24 @@ Create a new branch and switch onto it:
 ```commandline
 git switch -c new-branch-name
 ```
+```output
+Switched to a new branch 'new-branch-name'
+```
 
-Switch to an existing branch:
+Switch to an existing branch, for example back to `main`:
 ```commandline
-git switch branch-name
+git switch main
+```
+```output
+Switched to branch 'main'
 ```
 
 Often while working on a branch, the main branch has changes that you want to apply to the branch you are working on.
 You can do this by pulling changes from the main branch into the branch that you are working on:
-
 ```comandline
 git switch branch-name # Make sure you are on the branch into which you want to pull changes from main
 git pull origin main
 ```
-
 
 :::::::::::::::::::::::::::::::::::::::: keypoints
 
