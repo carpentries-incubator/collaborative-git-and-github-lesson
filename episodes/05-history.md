@@ -24,22 +24,38 @@ exercises: 0
 :::::::::::::::::::::::::::::::::::::::: instructor
 There are no specific slides for this episode. You could consider keeping the slides open to the episode on the basics of Git, to show the visual representation of the changes in the repository.
 
-Consider doing this episode as a demo and not going into the details. The aim is to demonstrate to participants the possiblity to go back and forth through the git log, which is enough for an introduction to git. In practice you only use this occasionally. 
-
-Make use of git switch and git restore instead of the confusing git checkout. This is probably much clearer for participants. We haven't tried this yet and it is not in the training material, so you have to do some pioneering.
+Consider doing this episode as a demo and not as live coding if time is short. 
+The aim is to demonstrate to participants the possibility to go back and forth through the git log, 
+which is enough for an introduction to git. In practice, you only use this feature occasionally. 
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-As we saw in the previous episode, we can refer to commits by their
-identifiers.  You can refer to the *most recent commit* of the working
-directory by using the identifier `HEAD`.
+In this episode you will learn some basic concepts about the git commit history.
+Remember that git can serve as a sort of time machine, going back and forth between historical commits.
+In practice, you only use this feature occasionally, so we will only explain some core concepts that will
+allow you to go back and forth between commits (maybe with some help of a search engine, but at least you know what you are searching for).
 
+### Two ways of referring to a commit
+As we saw in the previous episode, one way we can refer to commits is by their
+identifiers. The `Commit ID` is a 40-character random string, like: `f22b25e3233b4645dabd0d81e651fe074bd8e73b`. 
+
+Since this is a unique hash, you can also refer to just the first few characters of the commit ID: `f22b25e`.
+
+You can also refer to commits by using the identifier `HEAD`. `HEAD` points to the *most recent commit* of the working
+directory. You can use `HEAD~1` to refer to previous commits relative to `HEAD` (where "~" is "tilde", pronounced [**til**\-d*uh*]).
+
+The number behind `~` indicates the number of commits before `HEAD`. 
+So `HEAD~2` points to two commits before `HEAD`.
+
+See the overview figure below:
+
+![https://figshare.com/articles/How_Git_works_a_cartoon/1328266](fig/git_staging.svg){alt='Git Staging'}
+
+### Using `diff` with specific commits
 We've been adding one line at a time to `mars.txt`, so it's easy to track our
-progress by looking, so let's do that using our `HEAD`s.  Before we start,
-let's make a change to `mars.txt`, adding yet another line.
+progress by looking:
 
 ```bash
-$ nano mars.txt
 $ cat mars.txt
 ```
 
@@ -47,42 +63,12 @@ $ cat mars.txt
 Cold and dry, but everything is my favorite color
 The two moons may be a problem for Wolfman
 But the Mummy will appreciate the lack of humidity
-An ill-considered change
 ```
 
-Now, let's see what we get.
+Now, let's see the difference between the current version of the file and 2 commits before `HEAD`.
 
 ```bash
-$ git diff HEAD mars.txt
-```
-
-```output
-diff --git a/mars.txt b/mars.txt
-index b36abfd..0848c8d 100644
---- a/mars.txt
-+++ b/mars.txt
-@@ -1,3 +1,4 @@
- Cold and dry, but everything is my favorite color
- The two moons may be a problem for Wolfman
- But the Mummy will appreciate the lack of humidity
-+An ill-considered change.
-```
-
-which is the same as what you would get if you leave out `HEAD` (try it).  The
-real goodness in all this is when you can refer to previous commits.  We do
-that by adding `~1`
-(where "~" is "tilde", pronounced [**til**\-d*uh*])
-to refer to the commit one before `HEAD`.
-
-```bash
-$ git diff HEAD~1 mars.txt
-```
-
-If we want to see the differences between older commits we can use `git diff`
-again, but with the notation `HEAD~1`, `HEAD~2`, and so on, to refer to them:
-
-```bash
-$ git diff HEAD~3 mars.txt
+$ git diff HEAD~2 mars.txt
 ```
 
 ```output
@@ -94,7 +80,6 @@ index df0654a..b36abfd 100644
  Cold and dry, but everything is my favorite color
 +The two moons may be a problem for Wolfman
 +But the Mummy will appreciate the lack of humidity
-+An ill-considered change
 ```
 
 We could also use `git show` which shows us what changes we made at an older commit as
@@ -102,7 +87,7 @@ well as the commit message, rather than the *differences* between a commit and o
 working directory that we see by using `git diff`.
 
 ```bash
-$ git show HEAD~3 mars.txt
+$ git show HEAD~2 mars.txt
 ```
 
 ```output
@@ -121,44 +106,12 @@ index 0000000..df0654a
 +Cold and dry, but everything is my favorite color
 ```
 
-In this way,
-we can build up a chain of commits.
-The most recent end of the chain is referred to as `HEAD`;
-we can refer to previous commits using the `~` notation,
-so `HEAD~1`
-means "the previous commit",
-while `HEAD~123` goes back 123 commits from where we are now.
-
-We can also refer to commits using
-those long strings of digits and letters
-that `git log` displays.
-These are unique IDs for the changes,
-and "unique" really does mean unique:
-every change to any set of files on any computer
-has a unique 40-character identifier.
+We can also refer to commits using commit IDs
 Our first commit was given the ID
 `f22b25e3233b4645dabd0d81e651fe074bd8e73b`,
-so let's try this:
+and we know we can shorten that to `f22b25e`.
 
-```bash
-$ git diff f22b25e3233b4645dabd0d81e651fe074bd8e73b mars.txt
-```
-
-```output
-diff --git a/mars.txt b/mars.txt
-index df0654a..93a3e13 100644
---- a/mars.txt
-+++ b/mars.txt
-@@ -1 +1,4 @@
- Cold and dry, but everything is my favorite color
-+The two moons may be a problem for Wolfman
-+But the Mummy will appreciate the lack of humidity
-+An ill-considered change
-```
-
-That's the right answer,
-but typing out random 40-character strings is annoying,
-so Git lets us use just the first few characters (typically seven for normal size projects):
+So let's try:
 
 ```bash
 $ git diff f22b25e mars.txt
@@ -173,54 +126,16 @@ index df0654a..93a3e13 100644
  Cold and dry, but everything is my favorite color
 +The two moons may be a problem for Wolfman
 +But the Mummy will appreciate the lack of humidity
-+An ill-considered change
 ```
 
+### Restoring older versions
 All right! So
 we can save changes to files and see what we've changed. Now, how
 can we restore older versions of things?
-Let's suppose we change our mind about the last update to
-`mars.txt` (the "ill-considered change").
 
-`git status` now tells us that the file has been changed,
-but those changes haven't been staged:
+We can use the `git restore` command to do that.
 
-```bash
-$ git status
-```
-
-```output
-On branch main
-Changes not staged for commit:
-  (use "git add <file>..." to update what will be committed)
-  (use "git restore <file>..." to discard changes in working directory)
-
-    modified:   mars.txt
-
-no changes added to commit (use "git add" and/or "git commit -a")
-```
-
-We can put things back the way they were
-by using `git restore`:
-
-```bash
-$ git restore mars.txt
-$ cat mars.txt
-```
-
-```output
-Cold and dry, but everything is my favorite color
-The two moons may be a problem for Wolfman
-But the Mummy will appreciate the lack of humidity
-```
-
-As you might guess from its name,
-`git restore` restores an old version of a file.
-In this case,
-we're telling Git that we want to recover the version of the file recorded in `HEAD`,
-which is the last saved commit.
-If we want to go back even further,
-we can use the 'source' flag `-s` to specify a commit identifier instead:
+We can use the 'source' flag `-s` to specify a commit identifier:
 
 ```bash
 $ git restore -s f22b25e mars.txt
@@ -248,8 +163,11 @@ Changes not staged for commit:
 
 ```
 
-Again, we can put things back the way they were
-by using `git restore`:
+As you can see this changes the file to the version of the commit that we specified
+using the `-s` flag.
+
+We can put things back the way they were by using `git restore` again, 
+by default it restores a file to the most recent commit:
 
 ```bash
 $ git restore mars.txt
@@ -264,11 +182,6 @@ In the example below, we want to retrieve the state from before the most
 recent commit (`HEAD~1`), which is commit `f22b25e`:
 
 ![](fig/git-restore.svg){alt='Git Restore'}
-
-So, to put it all together,
-here's how Git works in cartoon form:
-
-![https://figshare.com/articles/How_Git_works_a_cartoon/1328266](fig/git_staging.svg){alt='Git Staging'}
 
 :::::::::::::::::::::::::::::::::::::::::  callout
 
@@ -447,7 +360,7 @@ Venus is beautiful and full of love.
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
-## Checking Understanding of `git diff`
+## Checking Understanding of git diff
 
 Consider this command: `git diff HEAD~9 mars.txt`. What do you predict this command
 will do if you execute it? What happens when you do execute it? Why?
@@ -461,114 +374,45 @@ and what does happen?
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
-## Getting Rid of Staged Changes
+## Getting Rid of Unstaged Changes
 
 `git restore` can be used to restore a previous commit when unstaged changes have
-been made, but will it also work for changes that have been staged but not committed?
-Make a change to `mars.txt`, add that change using `git add`,
-then use `git restore` to see if you can remove your change.
+been made, try it out by making some changes to `mars.txt`.
+
+Then use `git restore mars.txt` to revert the change.
 
 :::::::::::::::  solution
 
 ## Solution
-
-After adding a change, `git restore` can not be used directly.
-Let's look at the output of `git status`:
-
-```output
-On branch main
-Changes to be committed:
-  (use "git restore --staged <file>..." to unstage)
-
-        modified:   mars.txt
-
-```
-
-Note that if you don't have the same output
-you may either have forgotten to change the file,
-or you have added it *and* committed it.
-
-Using the command `git restore mars.txt` now does not give an error,
-but it does not restore the file either.
-Git helpfully tells us that we need to use `git restore --staged` instead
-to unstage the file:
+Add a line to `mars.txt`:
 
 ```bash
-$ git restore --staged mars.txt
-```
-
-Now, `git status` gives us:
-
-```bash
-$ git status
+$ nano mars.txt
+$ cat mars.txt
 ```
 
 ```output
-On branch main
-Changes not staged for commit:
-  (use "git add <file>..." to update what will be committed)
-  (use "git restore <file>..." to discard changes in working directory)
-
-        modified:   mars.txt
-
-no changes added to commit (use "git add" and/or "git commit -a")
+Cold and dry, but everything is my favorite color
+The two moons may be a problem for Wolfman
+But the Mummy will appreciate the lack of humidity
+An ill-considered change
 ```
 
-This means we can now use `git restore` to restore the file
-to the previous commit:
+We can put things back the way they were
+by using `git restore`:
 
 ```bash
 $ git restore mars.txt
-$ git status
+$ cat mars.txt
 ```
 
 ```output
-On branch main
-nothing to commit, working tree clean
+Cold and dry, but everything is my favorite color
+The two moons may be a problem for Wolfman
+But the Mummy will appreciate the lack of humidity
 ```
 
 :::::::::::::::::::::::::
-
-::::::::::::::::::::::::::::::::::::::::::::::::::
-
-:::::::::::::::::::::::::::::::::::::::  challenge
-
-## Explore and Summarize Histories
-
-Exploring history is an important part of Git, and often it is a challenge to find
-the right commit ID, especially if the commit is from several months ago.
-
-Imagine the `planets` project has more than 50 files.
-You would like to find a commit that modifies some specific text in `mars.txt`.
-When you type `git log`, a very long list appeared.
-How can you narrow down the search?
-
-Recall that the `git diff` command allows us to explore one specific file,
-e.g., `git diff mars.txt`. We can apply a similar idea here.
-
-```bash
-$ git log mars.txt
-```
-
-Unfortunately some of these commit messages are very ambiguous, e.g., `update files`.
-How can you search through these files?
-
-Both `git diff` and `git log` are very useful and they summarize a different part of the history
-for you.
-Is it possible to combine both? Let's try the following:
-
-```bash
-$ git log --patch mars.txt
-```
-
-You should get a long list of output, and you should be able to see both commit messages and
-the difference between each commit.
-
-Question: What does the following command do?
-
-```bash
-$ git log --patch HEAD~9 *.txt
-```
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
