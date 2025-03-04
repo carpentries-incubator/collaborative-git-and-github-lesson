@@ -28,8 +28,10 @@ First we show the centralized workflow all in the browser using Github:
 
 * instructor A creates an issue (for example create ‘sum’ function)
 * instructor B picks up the issue  
-* Instructor B creates a new branch (good to do this explicitly) 
+* Instructor B clones the repository
+* Instructor B creates a new branch, using `git switch -c new_feature` 
 * Instructor B does some reviewable changes (a simple ‘sum’ function) 
+* Instructor B pushes the changes to the remote repository on GitHub using `git push origin new_feature`
 * Instructor B opens a new pull request. 
 * Instructor A reviews and approves the PR. 
 * Instructor B merges the pull request. 
@@ -42,9 +44,9 @@ First we show the centralized workflow all in the browser using Github:
 #### Exercise: Working as a project collaborator (in pairs):
 - PERSON A: Create an issue in the repository
 - PERSON B: Clone this repository to your system
-- PERSON B: Create a new branch
+- PERSON B: Create a new branch, using `git switch -c new_feature`
 - PERSON B: Make the changes requested in the issue
-- PERSON B: Push the changes to the remote repository on GitHub
+- PERSON B: Push the changes to the remote repository on GitHub using `git push origin new_feature`
 - PERSON B: Submit a Pull Request, refer to the issue (e.g. "Closes #1")
 - PERSON A: Review the Pull Request
 - PERSON B: Address the comments
