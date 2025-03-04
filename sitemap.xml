@@ -28,10 +28,19 @@
     <loc>https://esciencecenter-digital-skills.github.io/git-lesson/07-github.html</loc>
   </url>
   <url>
+    <loc>https://esciencecenter-digital-skills.github.io/git-lesson/08-branches.html</loc>
+  </url>
+  <url>
     <loc>https://esciencecenter-digital-skills.github.io/git-lesson/08-collab-centralized.html</loc>
   </url>
   <url>
+    <loc>https://esciencecenter-digital-skills.github.io/git-lesson/09-collab-centralized.html</loc>
+  </url>
+  <url>
     <loc>https://esciencecenter-digital-skills.github.io/git-lesson/09-collab-distributed.html</loc>
+  </url>
+  <url>
+    <loc>https://esciencecenter-digital-skills.github.io/git-lesson/10-collab-distributed.html</loc>
   </url>
   <url>
     <loc>https://esciencecenter-digital-skills.github.io/git-lesson/404.html</loc>
@@ -79,10 +88,19 @@
     <loc>https://esciencecenter-digital-skills.github.io/git-lesson/instructor/07-github.html</loc>
   </url>
   <url>
+    <loc>https://esciencecenter-digital-skills.github.io/git-lesson/instructor/08-branches.html</loc>
+  </url>
+  <url>
     <loc>https://esciencecenter-digital-skills.github.io/git-lesson/instructor/08-collab-centralized.html</loc>
   </url>
   <url>
+    <loc>https://esciencecenter-digital-skills.github.io/git-lesson/instructor/09-collab-centralized.html</loc>
+  </url>
+  <url>
     <loc>https://esciencecenter-digital-skills.github.io/git-lesson/instructor/09-collab-distributed.html</loc>
+  </url>
+  <url>
+    <loc>https://esciencecenter-digital-skills.github.io/git-lesson/instructor/10-collab-distributed.html</loc>
   </url>
   <url>
     <loc>https://esciencecenter-digital-skills.github.io/git-lesson/instructor/404.html</loc>
@@ -118,6 +136,9 @@
     <loc>https://esciencecenter-digital-skills.github.io/git-lesson/instructor/reference.html</loc>
   </url>
   <url>
+    <loc>https://esciencecenter-digital-skills.github.io/git-lesson/instructor/workshops.html</loc>
+  </url>
+  <url>
     <loc>https://esciencecenter-digital-skills.github.io/git-lesson/instructor-notes.html</loc>
   </url>
   <url>
@@ -131,5 +152,8 @@
   </url>
   <url>
     <loc>https://esciencecenter-digital-skills.github.io/git-lesson/reference.html</loc>
+  </url>
+  <url>
+    <loc>https://esciencecenter-digital-skills.github.io/git-lesson/workshops.html</loc>
   </url>
 </urlset>
