@@ -1,6 +1,6 @@
 {
   "R": {
-    "Version": "4.4.2",
+    "Version": "4.4.3",
     "Repositories": [
       {
         "Name": "carpentries",
@@ -19,7 +19,7 @@
   "Packages": {
     "renv": {
       "Package": "renv",
-      "Version": "1.1.0",
+      "Version": "1.1.2",
       "Source": "Repository",
       "Type": "Package",
       "Title": "Project Environments",
