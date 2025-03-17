@@ -19,6 +19,8 @@ exercises: 60
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
+## What is a fork ?
+
 So far, we have seen how to use git to collaborate with internal collaborators,
 i.e. with other people working on the same repository within the same organization.
 
@@ -28,7 +30,7 @@ push changes to the repository, and we need to use a different workflow.
 
 Platforms like GihHub (or Gitlab) provide a way to create a mirror of a repository into
 an organization we belong to. In GitHub lingo, this is called a fork. Although the fork
-is a completely separate repository, GitHub keeps dynamic link between the original
+is a completely separate repository, GitHub keeps a dynamic link between the original
 repository and your fork to facilitate collaboration (opening a Pull Request, syncing
 changes, etc.).
 
@@ -48,6 +50,35 @@ After a few seconds, you will be redirected to the forked repository:
 
 ![](fig/Fork_Final.png){alt='Your forked repository (Step 3)'}
 
+## Opening a pull request from a fork
+
+Once you have created your fork of the repository, you can clone the forked repository:
+
+```bash
+git clone https://github.com/username/forked-repo.git
+```
+
+or add the fork as a remote to an existing clone of the original repository:
+
+```bash
+cd original-repo
+git remote add myfork https://github.com/username/forked-repo.git
+```
+
+Modify the content of the reposotory to your liking then add your contribution to a
+new branch and push it to your fork (assuming you have added the fork as a new remote):
+
+```bash
+git checkout -b mybranch
+git commit updatedfile -m "Add new feature"
+git push myfork mybranch
+```
+
+Navigate to your fork of the repository in your web browser and from the Pull requests tab,
+open a new pull request. By default, GitHub opens the pull request against the main branch
+of the original repo:
+
+![](fig/PullRequest_FromFork.png){alt='Opening a Pull request from your fork into the original repository'}
 
 ::::::::::::::::::::::::::::::::::::::: instructor
 Teaching is done as a pair of instructors. 
