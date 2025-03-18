@@ -287,12 +287,21 @@
 <div class="accordion accordion-flush" id="accordionFlushcurrent">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-headingcurrent">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapsecurrent" aria-expanded="true" aria-controls="flush-collapsecurrent">
         <span class="visually-hidden">Current Chapter</span>
         <span class="current-chapter">
         10. Collaborative Version Control - Distributed
         </span>
-      
+      </button>
     </div><!--/div.accordion-header-->
+
+    <div id="flush-collapsecurrent" class="accordion-collapse collapse show" aria-labelledby="flush-headingcurrent" data-bs-parent="#accordionFlushcurrent">
+      <div class="accordion-body">
+        <ul><li><a href="#what-is-a-fork">What is a fork ?</a></li>
+<li><a href="#how-to-create-a-fork">How to create a fork ?</a></li>
+<li><a href="#opening-a-pull-request-from-a-fork">Opening a pull request from a fork</a></li>
+        </ul></div><!--/div.accordion-body-->
+    </div><!--/div.accordion-collapse-->
 
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
@@ -355,7 +364,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Collaborative Version Control - Distributed</h1>
-        <p>Last updated on 2025-03-04 |
+        <p>Last updated on 2025-03-18 |
 
         <a href="https://github.com/esciencecenter-digital-skills/git-lesson/edit/main/episodes/10-collab-distributed.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -385,18 +394,71 @@ collaborators?</li>
 <div class="card-body">
 <div class="inner bordered">
 <h3 class="card-title">Objectives</h3>
-<ul><li>Understand distributed workflow and when to use it</li>
+<ul><li>Introduce the concept of fork</li>
+<li>Understand distributed workflow and when to use it</li>
 </ul></div>
 </div>
 </div>
 </div>
 </div>
-<div id="accordionInstructor1" class="accordion instructor-note accordion-flush">
+<section><h2 class="section-heading" id="what-is-a-fork">What is a fork ?<a class="anchor" aria-label="anchor" href="#what-is-a-fork"></a></h2>
+<hr class="half-width"><p>So far, we have seen how to use git to collaborate with internal
+collaborators, i.e. with other people working on the same repository
+within the same organization.</p>
+<p>Often times, we also want to collaborate or contribute to
+repositories not owned by us or by an organization we belong to. In that
+case, we are not allowed to push changes to the repository, and we need
+to use a different workflow.</p>
+<p>Platforms like GihHub (or Gitlab) provide a way to create a mirror of
+a repository into an organization we belong to. In GitHub lingo, this is
+called a fork. Although the fork is a completely separate repository,
+GitHub keeps a dynamic link between the original repository and your
+fork to facilitate collaboration (opening a Pull Request, syncing
+changes, etc.).</p>
+</section><section><h2 class="section-heading" id="how-to-create-a-fork">How to create a fork ?<a class="anchor" aria-label="anchor" href="#how-to-create-a-fork"></a></h2>
+<hr class="half-width"><p>Log in to <a href="https://github.com" class="external-link">GitHub</a>, then navigate to
+the repository you want to fork. Then click on the “Fork” button near
+the top right corner:</p>
+<figure><img src="../fig/Fork_Step1.png" alt="Creating a fork of a repository (Step 1)" class="figure mx-auto d-block"></figure><p>On the next page, you will have the choice to place the fork on your
+personal account or any organization you belong to. You can also change
+the name of the forked repository.</p>
+<figure><img src="../fig/Fork_Step2.png" alt="Select a location and a name for the fork (Step 2)" class="figure mx-auto d-block"></figure><p>After a few seconds, you will be redirected to the forked
+repository:</p>
+<figure><img src="../fig/Fork_Final.png" alt="Your forked repository (Step 3)" class="figure mx-auto d-block"></figure></section><section><h2 class="section-heading" id="opening-a-pull-request-from-a-fork">Opening a pull request from a fork<a class="anchor" aria-label="anchor" href="#opening-a-pull-request-from-a-fork"></a></h2>
+<hr class="half-width"><p>Once you have created your fork of the repository, you can clone the
+forked repository:</p>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/username/forked-repo.git</span></code></pre>
+</div>
+<p>or add the fork as a remote to an existing clone of the original
+repository:</p>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="bu">cd</span> original-repo</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">git</span> remote add myfork https://github.com/username/forked-repo.git</span></code></pre>
+</div>
+<p>Modify the content of the reposotory to your liking then add your
+contribution to a new branch and push it to your fork (assuming you have
+added the fork as a new remote):</p>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">git</span> checkout <span class="at">-b</span> mybranch</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="fu">git</span> commit updatedfile <span class="at">-m</span> <span class="st">"Add new feature"</span></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="fu">git</span> push myfork mybranch</span></code></pre>
+</div>
+<p>Navigate to your fork of the repository in your web browser and from
+the Pull requests tab, open a new pull request. By default, GitHub opens
+the pull request against the main branch of the original repo:</p>
+<figure><img src="../fig/PullRequest_FromFork.png" alt="Opening a Pull request from your fork into the original repository" class="figure mx-auto d-block"></figure><div id="accordionInstructor1" class="accordion instructor-note accordion-flush">
 <div class="accordion-item">
 <button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor1" aria-expanded="false" aria-controls="collapseInstructor1">
   <h3 class="accordion-header" id="headingInstructor1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> Instructor Note </h3>
 </button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
+<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
 <div class="accordion-body">
 <p>Teaching is done as a pair of instructors. Instructor A acts as the
 owner of the repository, instructor B as a collaborator (internal or
@@ -444,7 +506,7 @@ as person A’s proposed changes</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 
 </div>
@@ -466,10 +528,7 @@ as person A’s proposed changes</li>
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
  -->
-
-
-
-      </div> <!-- / div.lesson-content -->
+</section></div> <!-- / div.lesson-content -->
     </main><!-- / main#main-content.main-content --><nav class="bottom-pagination mx-md-4" aria-label="Previous and Next Chapter"><div class="d-block d-sm-block d-md-none">
         <a class="chapter-link" href="../instructor/09-collab-centralized.html"><i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>Previous</a>
         <a class="chapter-link float-end" href="../instructor/index.html">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
@@ -526,8 +585,8 @@ any links that you are not going to use.
   "creativeWorkStatus": "active",
   "url": "https://esciencecenter-digital-skills.github.io/git-lesson/instructor/10-collab-distributed.html",
   "identifier": "https://esciencecenter-digital-skills.github.io/git-lesson/instructor/10-collab-distributed.html",
-  "dateCreated": "2025-03-14",
-  "dateModified": "2025-03-04",
+  "dateCreated": "2025-03-18",
+  "dateModified": "2025-03-18",
   "datePublished": "2025-03-18"
 }
 
